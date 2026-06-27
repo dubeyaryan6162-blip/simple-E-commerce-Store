@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechStore - E-Commerce Platform</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">🛒 TechStore</div>
+            <ul class="nav-links">
+                <li><a href="#" onclick="showProducts()">Home</a></li>
+                <li><a href="#" onclick="showCart()">Cart <span id="cart-count" class="cart-count">0</span></a></li>
+                <li id="user-menu">
+                    <a href="#" onclick="toggleUserMenu()">Account ▼</a>
+                    <div id="user-dropdown" class="dropdown">
+                        <a href="#" onclick="showOrders()">My Orders</a>
+                        <a href="#" onclick="logout()">Logout</a>
+                    </div>
+                </li>
+                <li id="auth-menu">
+                    <a href="#" onclick="showLoginForm()">Login</a>
+                    <a href="#" onclick="showRegisterForm()">Register</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Products Page -->
+        <div id="products-page" class="page active">
+            <h1>Featured Products</h1>
+            <div id="products-grid" class="products-grid"></div>
+        </div>
+
+        <!-- Product Details Page -->
+        <div id="product-detail-page" class="page">
+            <button class="back-btn" onclick="showProducts()">← Back to Products</button>
+            <div id="product-detail" class="product-detail"></div>
+        </div>
+
+        <!-- Shopping Cart Page -->
+        <div id="cart-page" class="page">
+            <h1>Shopping Cart</h1>
+            <div id="cart-content" class="cart-content"></div>
+        </div>
+
+        <!-- Orders Page -->
+        <div id="orders-page" class="page">
+            <h1>My Orders</h1>
+            <div id="orders-list" class="orders-list"></div>
+        </div>
+
+        <!-- Login Form -->
+        <div id="login-page" class="page">
+            <div class="auth-form">
+                <h2>Login</h2>
+                <input type="email" id="login-email" placeholder="Email">
+                <input type="password" id="login-password" placeholder="Password">
+                <button onclick="login()" class="btn btn-primary">Login</button>
+                <p>Don't have an account? <a href="#" onclick="showRegisterForm()">Register here</a></p>
+                <button onclick="showProducts()" class="btn btn-secondary">Back to Shopping</button>
+            </div>
+        </div>
+
+        <!-- Register Form -->
+        <div id="register-page" class="page">
+            <div class="auth-form">
+                <h2>Create Account</h2>
+                <input type="text" id="register-username" placeholder="Username">
+                <input type="email" id="register-email" placeholder="Email">
+                <input type="password" id="register-password" placeholder="Password">
+                <input type="password" id="register-confirm" placeholder="Confirm Password">
+                <button onclick="register()" class="btn btn-primary">Register</button>
+                <p>Already have an account? <a href="#" onclick="showLoginForm()">Login here</a></p>
+                <button onclick="showProducts()" class="btn btn-secondary">Back to Shopping</button>
+            </div>
+        </div>
+
+        <!-- Checkout Page -->
+        <div id="checkout-page" class="page">
+            <h2>Checkout</h2>
+            <div class="checkout-form">
+                <h3>Order Summary</h3>
+                <div id="checkout-items" class="checkout-items"></div>
+                <div class="checkout-total">
+                    <h3>Total: $<span id="checkout-total">0.00</span></h3>
+                </div>
+                <h3>Shipping Information</h3>
+                <input type="text" id="shipping-address" placeholder="Address">
+                <input type="text" id="shipping-city" placeholder="City">
+                <input type="text" id="shipping-zip" placeholder="ZIP Code">
+                <h3>Payment Information</h3>
+                <input type="text" id="card-number" placeholder="Card Number" maxlength="16">
+                <div class="card-row">
+                    <input type="text" id="card-expiry" placeholder="MM/YY" maxlength="5">
+                    <input type="text" id="card-cvv" placeholder="CVV" maxlength="3">
+                </div>
+                <button onclick="processOrder()" class="btn btn-primary">Place Order</button>
+                <button onclick="showCart()" class="btn btn-secondary">Back to Cart</button>
+            </div>
+        </div>
+
+        <!-- Order Confirmation -->
+        <div id="confirmation-page" class="page">
+            <div class="confirmation">
+                <h2>✓ Order Confirmed!</h2>
+                <p>Order ID: <strong id="confirmation-order-id"></strong></p>
+                <p>Status: <strong id="confirmation-status"></strong></p>
+                <p>Thank you for your purchase!</p>
+                <button onclick="showProducts()" class="btn btn-primary">Continue Shopping</button>
+                <button onclick="showOrders()" class="btn btn-secondary">View My Orders</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
